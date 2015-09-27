@@ -1,16 +1,15 @@
 from sklearn.base import BaseEstimator
-from pyearth import Earth
+from sklearn.ensemble import GradientBoostingRegressor, RandomForestRegressor, AdaBoostRegressor
 from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import StandardScaler
-from sklearn.decomposition import PCA
 
 
 class Regressor(BaseEstimator):
-    def __init__(self):
+    def __init__(self, **kwargs):
         self.clf = make_pipeline(
-                StandardScaler(),
-                PCA(n_components=200),
-                Earth(max_terms=20, max_degree=10)
+            GradientBoostingRegressor(n_estimators=302,
+                                      max_features=122,
+                                      max_depth=5,
+                                      learning_rate=0.039185610530855515)
         )
 
     def fit(self, X, y):
